@@ -80,6 +80,8 @@ header svg:hover {
 .fav-meals li {
   margin: 5px;
   width: 75px;
+  position: relative;
+  cursor: pointer;
 }
 
 .fav-meals li img {
@@ -92,7 +94,35 @@ header svg:hover {
 }
 
 .fav-meals li span {
+  display: inline-block;
   font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 75px;
+}
+
+.fav-meals li button.clear {
+  border: none;
+  background: transparent;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  opacity: 0;
+}
+
+.fav-meals li:hover button.clear {
+  opacity: 1;
+}
+
+.fav-meals button.clear svg {
+  height: 1rem;
+  cursor: pointer;
+  height: 1.2rem;
+}
+
+.fav-meals button.clear:hover svg {
+  color: red;
 }
 
 .meal {
@@ -100,6 +130,7 @@ header svg:hover {
   box-shadow: 0 0 5px #3333331a;
   margin: 1.5rem;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .meal-header {
@@ -150,12 +181,54 @@ header svg:hover {
   fill: rgb(216, 0, 0);
 }
 
-.fav-meals button.clear {
-  border: none;
-  background: transparent;
+/* Meal info */
+
+.popup-container {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
-.fav-meals button.clear svg {
-  height: 1rem;
+.popup-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.popup {
+  background-color: #fff;
+  padding: 0 2rem;
+  border-radius: 5px;
+  max-height: 100vh;
+  overflow: auto;
+  margin: 2rem;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+}
+
+.meal-info h1 {
+  text-align: center;
+}
+
+button#close-popup {
+  right: 1em;
+  top: 1em;
+  position: absolute;
+  background: transparent;
+  border: none;
   cursor: pointer;
+}
+
+button#close-popup:hover svg {
+  color: red;
+}
+
+button#close-popup svg {
+  height: 2rem;
 }
